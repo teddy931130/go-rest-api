@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports: 
+      - 8080:8080 
+    restart: on-failure
+    depends_on:
+      - mysql         
+
+  mysql:
+    image: mysql:5.7
+    env_file:
+      - .env
+    ports: 
+      - 33066:3306
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+      - ./db/data:/usr/local/share/data
+  
+  phpmyadmin:
+    image: phpmyadmin:5.1
+    depends_on:
+      - mysql
+    ports:
+      - 9090:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    restart: always

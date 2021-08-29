@@ -1,0 +1,7 @@
+# rename file to .env
+
+MYSQL_DATABASE=go_rest_api
+MYSQL_ROOT_PASSWORD=admin
+
+PMA_USER=root
+PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
