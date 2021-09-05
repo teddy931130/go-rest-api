@@ -5,23 +5,23 @@ services:
     build: .
     env_file:
       - .env
-    ports: 
-      - 8080:8080 
+    ports:
+      - 8080:8080
     restart: on-failure
     depends_on:
-      - mysql         
+      - mysql
 
   mysql:
     platform: linux/x86_64
     image: mysql:5.7
     env_file:
       - .env
-    ports: 
+    ports:
       - 33066:3306
     volumes:
       - ./db/mysql:/var/lib/mysql
       - ./db/data:/usr/local/share/data
-  
+
   phpmyadmin:
     image: phpmyadmin:5.1
     depends_on:
